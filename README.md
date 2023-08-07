@@ -57,5 +57,9 @@ remove plugin: `poetry remove [plugin-name]`
    other than those files we can create service files to have the business logic<br/>
 4. then in `endpoints.py` under `router` -> `api_v*` we should our endpoints created in the previous step
 
+## Celery worker run
+`celery -A app.core.celery_conf worker --loglevel=INFO`<br/>
+for local --loglevel can be `DEBUG`
+
 
 Source: https://medium.com/@estretyakov/the-ultimate-async-setup-fastapi-sqlmodel-alembic-pytest-ae5cdcfed3d4
