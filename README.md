@@ -18,58 +18,43 @@ Here is a short description of python packages used in the article (just to make
    with the SQLAlchemy Database Toolkit for Python.
 
 ## mysql 
-`docker run --name=mysql1 -p 3307:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql/mysql-server:8.0`__
-then enter into the container `docker exec -it [container-id] bash`__
-then log into mysql `mysql -u root -p`__
-create DB__
+`docker run --name=mysql1 -p 3307:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql/mysql-server:8.0`<br/>
+then enter into the container `docker exec -it [container-id] bash`<br/>
+then log into mysql `mysql -u root -p`<br/>
+create DB<br/>
 create user `CREATE USER 'heroes_my'@'%' IDENTIFIED BY 'heroes_my';`<br/>
-and then grant privileges __
-`GRANT ALL ON *.* TO 'heroes_my'@'%';` __
-`FLUSH PRIVILEGES;` __
+and then grant privileges <br/>
+`GRANT ALL ON *.* TO 'heroes_my'@'%';` <br/>
+`FLUSH PRIVILEGES;` <br/>
 
 ## env file
 update environment variables. for example mysql url will be like `mysql+asyncmy://heroes_my:heroes_my@0.0.0.0:3307/heroes_db`
 
 ## Alembic Migration and commands
-Alembic Initilization 
-`alembic init -t async migrations`
-
-Alembic migration file generation `alembic revision --autogenerate -m "heroes"`
-
+Alembic Initilization `alembic init -t async migrations`<br/>
+Alembic migration file generation `alembic revision --autogenerate -m "heroes"`<br/>
 Alembic run migration `alembic upgrade head`
 
 ## Deployment
-Use this command to build Docker container: `docker build --build-arg ENV_FILE=".env" -t hero-app -f Dockerfile .`
-
+Use this command to build Docker container: `docker build --build-arg ENV_FILE=".env" -t hero-app -f Dockerfile .`<br/>
 And this command to start container: `docker run -d -p "8080:80" --name hero-app hero-app`
 
 
 ## poetry related commands
-add plugin: `poetry add [plugin-name]`
-
-add plugin under specific group: `poetry add [plugin-name] --group [group name]`
-
-install plugins from pyproject file: `poetry install`
-
+add plugin: `poetry add [plugin-name]`<br/>
+add plugin under specific group: `poetry add [plugin-name] --group [group name]`<br/>
+install plugins from pyproject file: `poetry install`<br/>
 remove plugin: `poetry remove [plugin-name]`
 
 ## Instructions to add new api endpoint
-1. first create a new folder under `app`
-
-2. always remember to add __init__.py file to any new folder created
-
-3. then create 4 files under this newly created folder
-
-   a. `api.py` - we'll add our endpoints here
-
-   b. `models.py` - DB models will be there id needed
-
-   c. `dependencies.py` - we'll add our DB connections related stuff here
-
-   d. `crud.py` - this file will have the DB functions
-
-   other than those files we can create service files to have the business logic
-
+1. first create a new folder under `app`<br/>
+2. always remember to add __init__.py file to any new folder created<br/>
+3. then create 4 files under this newly created folder<br/>
+   a. `api.py` - we'll add our endpoints here<br/>
+   b. `models.py` - DB models will be there id needed<br/>
+   c. `dependencies.py` - we'll add our DB connections related stuff here<br/>
+   d. `crud.py` - this file will have the DB functions<br/>
+   other than those files we can create service files to have the business logic<br/>
 4. then in `endpoints.py` under `router` -> `api_v*` we should our endpoints created in the previous step
 
 
