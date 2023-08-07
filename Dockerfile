@@ -9,7 +9,7 @@ ENV ENV_FILE=${ENV_FILE} \
     PIP_NO_CACHE_DIR=off \
     PIP_DISABLE_PIP_VERSION_CHECK=on \
     PIP_DEFAULT_TIMEOUT=100 \
-    POETRY_VERSION=1.1.13
+    POETRY_VERSION=1.5.1
 
 # System deps:
 RUN pip install "poetry==$POETRY_VERSION"
@@ -26,6 +26,6 @@ RUN poetry config virtualenvs.create false \
 # Creating folders, and files for a project:
 COPY . /vyce-backend
 
-RUN alembic upgrade head
+# RUN alembic upgrade head
 
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
