@@ -36,10 +36,10 @@ Alembic migration file generation `alembic revision --autogenerate -m "heroes"`<
 Alembic run migration `alembic upgrade head`
 
 ## Deployment
-Use this command to build Docker container: `docker build --build-arg ENV_FILE=".env" -t hero-app -f Dockerfile .`<br/>
+Use this command to build Docker <b>container for App</b>: `docker build --build-arg ENV_FILE=".env" -t hero-app -f Dockerfile .`<br/>
 And this command to start container: `docker run --network [common_services_common] -d -p "8080:80" --name hero-app hero-app`<br/>
 
-Use this command to build Docker container for Worker: `docker build --build-arg ENV_FILE=".env" -t hero-app2 -f DockerfileCelery .`<br/>
+Use this command to build Docker <b>container for Worker</b>: `docker build --build-arg ENV_FILE=".env" -t hero-app2 -f DockerfileCelery .`<br/>
 And this command to start container: `docker run --network [common_services_common] -d --name hero-app2 hero-app2`<br/>
 
 if we dont need to attach container to any existing network then `--network [common_services_common]` this have to be removed from the `docker run` command.<br/>
