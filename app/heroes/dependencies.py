@@ -6,6 +6,6 @@ from app.heroes.crud import HeroesCRUD
 
 
 async def get_heroes_crud(
-        session: AsyncSession = Depends(get_async_session)
+    session: AsyncSession = Depends(get_async_session),
 ) -> HeroesCRUD:
     return HeroesCRUD(session=session)

@@ -11,7 +11,7 @@ include_api = api_router.include_router
 routers = (
     (heroes_router, "heroes", "heroes"),
     (search_router, "search", "search"),
-    (feed_router, "feed", "feed")
+    (feed_router, "feed", "feed"),
 )
 
 for router_item in routers:

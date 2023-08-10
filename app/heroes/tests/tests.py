@@ -8,12 +8,13 @@ from app.heroes.models import Hero
 
 @pytest.mark.asyncio
 async def test_create_hero(
-        async_client: AsyncClient,
-        async_session: AsyncSession,
-        test_data: dict
+    async_client: AsyncClient, async_session: AsyncSession, test_data: dict
 ):
     payload = test_data["case_create"]["payload"]
-    response = await async_client.post("/heroes", json=payload,)
+    response = await async_client.post(
+        "/heroes",
+        json=payload,
+    )
 
     assert response.status_code == 201
 
@@ -33,9 +34,7 @@ async def test_create_hero(
 
 @pytest.mark.asyncio
 async def test_get_hero(
-        async_client: AsyncClient,
-        async_session: AsyncSession,
-        test_data: dict
+    async_client: AsyncClient, async_session: AsyncSession, test_data: dict
 ):
     hero_data = test_data["initial_data"]["hero"]
     statement = insert(Hero).values(hero_data)
@@ -54,9 +53,7 @@ async def test_get_hero(
 
 @pytest.mark.asyncio
 async def test_patch_hero(
-        async_client: AsyncClient,
-        async_session: AsyncSession,
-        test_data: dict
+    async_client: AsyncClient, async_session: AsyncSession, test_data: dict
 ):
     hero_data = test_data["initial_data"]["hero"]
     statement = insert(Hero).values(hero_data)
@@ -64,10 +61,7 @@ async def test_patch_hero(
     await async_session.commit()
 
     payload = test_data["case_patch"]["payload"]
-    response = await async_client.patch(
-        f"/heroes/{hero_data['uuid']}",
-        json=payload
-    )
+    response = await async_client.patch(f"/heroes/{hero_data['uuid']}", json=payload)
     assert response.status_code == 200
 
     got = response.json()
@@ -79,9 +73,7 @@ async def test_patch_hero(
 
 @pytest.mark.asyncio
 async def test_delete_hero(
-        async_client: AsyncClient,
-        async_session: AsyncSession,
-        test_data: dict
+    async_client: AsyncClient, async_session: AsyncSession, test_data: dict
 ):
     hero_data = test_data["initial_data"]["hero"]
     statement = insert(Hero).values(hero_data)
@@ -97,11 +89,7 @@ async def test_delete_hero(
     for k, v in want.items():
         assert got[k] == v
 
-    statement = select(
-        Hero
-    ).where(
-        Hero.uuid == hero_data["uuid"]
-    )
+    statement = select(Hero).where(Hero.uuid == hero_data["uuid"])
     results = await async_session.execute(statement=statement)
     hero = results.scalar_one_or_none()
 

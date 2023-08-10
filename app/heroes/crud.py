@@ -23,18 +23,14 @@ class HeroesCRUD:
         return hero
 
     async def get(self, hero_id: str | UUID) -> Hero:
-        statement = select(
-            Hero
-        ).where(
-            Hero.uuid == hero_id
-        )
+        statement = select(Hero).where(Hero.uuid == hero_id)
         results = await self.session.execute(statement=statement)
         hero = results.scalar_one_or_none()  # type: Hero | None
 
         if hero is None:
             raise HTTPException(
                 status_code=http_status.HTTP_404_NOT_FOUND,
-                detail="The hero hasn't been found!"
+                detail="The hero hasn't been found!",
             )
 
         return hero
@@ -53,11 +49,7 @@ class HeroesCRUD:
         return hero
 
     async def delete(self, hero_id: str | UUID) -> bool:
-        statement = delete(
-            Hero
-        ).where(
-            Hero.uuid == hero_id
-        )
+        statement = delete(Hero).where(Hero.uuid == hero_id)
 
         await self.session.execute(statement=statement)
         await self.session.commit()

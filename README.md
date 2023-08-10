@@ -73,4 +73,7 @@ remove plugin: `poetry remove [plugin-name]`
 for local --loglevel can be `DEBUG`
 
 
+## Pre-Commit Hook
+Followed this [https://www.fastapitutorial.com/blog/fastapi-development-workflow]
+
 Source: https://medium.com/@estretyakov/the-ultimate-async-setup-fastapi-sqlmodel-alembic-pytest-ae5cdcfed3d4

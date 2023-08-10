@@ -1,3 +1,4 @@
+""" Configure Tests """
 import asyncio
 import json
 import os
@@ -24,18 +25,17 @@ def event_loop(request) -> Generator:  # noqa: indirect usage
 
 @pytest_asyncio.fixture
 async def async_client():
+    """Async Client Setup"""
     async with AsyncClient(
-            app=app,
-            base_url=f"http://{settings.api_v1_prefix}"
+        app=app, base_url=f"http://{settings.api_v1_prefix}"
     ) as client:
         yield client
 
 
 @pytest_asyncio.fixture(scope="function")
 async def async_session() -> AsyncSession:
-    session = sessionmaker(
-        async_engine, class_=AsyncSession, expire_on_commit=False
-    )
+    """Async Session Setup"""
+    session = sessionmaker(async_engine, class_=AsyncSession, expire_on_commit=False)
 
     async with session() as s:
         async with async_engine.begin() as conn:
@@ -51,7 +51,8 @@ async def async_session() -> AsyncSession:
 
 @pytest.fixture(scope="function")
 def test_data() -> dict:
-    path = os.getenv('PYTEST_CURRENT_TEST')
+    """Test Data setup"""
+    path = os.getenv("PYTEST_CURRENT_TEST")
     path = os.path.join(*os.path.split(path)[:-1], "data", "data.json")
 
     if not os.path.exists(path):

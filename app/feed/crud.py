@@ -1,6 +1,3 @@
-from fastapi import HTTPException
-from fastapi import status as http_status
-from sqlalchemy import delete, select
 from sqlmodel.ext.asyncio.session import AsyncSession
 
 
@@ -13,5 +10,5 @@ class FeedCRUD:
         # print(resp.scalar())
         result = resp.fetchall()
         for row in result:
-            print(row[0],row[2])
-        return {'hero': 'hero'}
+            print(row[0], row[2])
+        return {"hero": "hero"}

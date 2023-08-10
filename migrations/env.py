@@ -19,9 +19,8 @@ target_metadata.naming_convention = {
     "ix": "ix_%(column_0_label)s",
     "uq": "uq_%(table_name)s_%(column_0_name)s",
     "ck": "ck_%(table_name)s_%(constraint_name)s",
-    "fk": "fk_%(table_name)s_%(column_0_name)"
-          "s_%(referred_table_name)s",
-    "pk": "pk_%(table_name)s"
+    "fk": "fk_%(table_name)s_%(column_0_name)" "s_%(referred_table_name)s",
+    "pk": "pk_%(table_name)s",
 }
 
 from app.heroes.models import Hero  # noqa: 'autogenerate' support
@@ -30,11 +29,11 @@ exclude_tables = loads(os.getenv("DB_EXCLUDE_TABLES"))
 
 
 def filter_db_objects(
-        object,  # noqa: indirect usage
-        name,
-        type_,
-        *args,  # noqa: indirect usage
-        **kwargs  # noqa: indirect usage
+    object,  # noqa: indirect usage
+    name,
+    type_,
+    *args,  # noqa: indirect usage
+    **kwargs  # noqa: indirect usage
 ):
     if type_ == "table":
         return name not in exclude_tables
@@ -52,7 +51,7 @@ def run_migrations_offline():
         target_metadata=target_metadata,
         literal_binds=True,
         dialect_opts={"paramstyle": "named"},
-        include_object=filter_db_objects
+        include_object=filter_db_objects,
     )
 
     with context.begin_transaction():
@@ -66,7 +65,7 @@ def do_run_migrations(connection):
         context.configure(
             connection=connection,
             target_metadata=target_metadata,
-            include_object=filter_db_objects
+            include_object=filter_db_objects,
         )
         context.run_migrations()
 

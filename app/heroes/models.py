@@ -1,7 +1,4 @@
 from typing import Optional
-
-from sqlalchemy import Column, event
-# from sqlalchemy.databases import postgres
 from sqlmodel import Field, SQLModel
 
 from app.core.models import TimestampModel, UUIDModel
@@ -30,12 +27,7 @@ class HeroBase(SQLModel):
     role: Optional[str] = Field(max_length=255, nullable=True)
 
 
-class Hero(
-    TimestampModel,
-    HeroBase,
-    UUIDModel,
-    table=True
-):
+class Hero(TimestampModel, HeroBase, UUIDModel, table=True):
     __tablename__ = f"{prefix}_heroes"
 
 

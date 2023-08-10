@@ -1,7 +1,10 @@
+""" App Settings """
 from pydantic import BaseSettings
 
 
 class Settings(BaseSettings):
+    """App Settings class"""
+
     # Base
     api_v1_prefix: str
     debug: bool
