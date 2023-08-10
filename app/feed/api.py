@@ -16,7 +16,7 @@ async def get_mysql_data(feedCrud: FeedCRUD = Depends(get_feed_crud)):
     custom_task.delay()
     custom_task2.delay()
     es = AsyncElasticsearch(
-        [settings.es_url], 
+        [settings.es_url],
         verify_certs=False
     )
     resp = await es.search (

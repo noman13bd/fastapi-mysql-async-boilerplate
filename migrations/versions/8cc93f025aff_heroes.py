@@ -1,7 +1,7 @@
 """heroes
 
 Revision ID: 8cc93f025aff
-Revises: 
+Revises:
 Create Date: 2023-07-31 16:42:57.196335
 
 """

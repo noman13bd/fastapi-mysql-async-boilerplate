@@ -17,7 +17,7 @@ Here is a short description of python packages used in the article (just to make
 6. [Alembic](https://alembic.sqlalchemy.org/en/latest/) - Alembic is a lightweight database migration tool for usage
    with the SQLAlchemy Database Toolkit for Python.
 
-## mysql 
+## mysql
 `docker run --name=mysql1 -p 3307:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql/mysql-server:8.0`<br/>
 then enter into the container `docker exec -it [container-id] bash`<br/>
 then log into mysql `mysql -u root -p`<br/>
