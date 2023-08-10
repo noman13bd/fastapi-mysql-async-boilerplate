@@ -13,3 +13,4 @@ class Settings(BaseSettings):
     db_async_connection_str: str
     db_async_test_connection_str: str
     celery_broker_url: str
+    es_url: str

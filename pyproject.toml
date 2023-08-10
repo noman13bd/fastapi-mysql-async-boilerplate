@@ -18,6 +18,7 @@ uvicorn = "^0.23.1"
 asyncmy = "^0.2.8"
 redis = "^4.6.0"
 celery = "^5.3.1"
+elasticsearch = {extras = ["async"], version = "^8.9.0"}
 
 [tool.poetry.dev-dependencies]
 isort = "^5.12.0"
